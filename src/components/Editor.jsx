@@ -120,7 +120,7 @@ const Leaf = ({ attributes, children, leaf }) => {
           css`
             display: inline-block;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 30px;
             margin: 20px 0 10px 0;
           `}
         ${leaf.list &&
@@ -133,20 +133,19 @@ const Leaf = ({ attributes, children, leaf }) => {
           css`
             display: block;
             text-align: center;
-            border-bottom: 2px solid #ddd;
+            border-bottom: 2px solid #141414;
           `}
         ${leaf.blockquote &&
           css`
             display: inline-block;
-            border-left: 2px solid #ddd;
+            border-left: 2px solid #141414;
             padding-left: 10px;
             color: #aaa;
-            font-style: italic;
           `}
         ${leaf.code &&
           css`
-            font-family: monospace;
-            background-color: #eee;
+            background-color: #141414;
+            border-radius: 3px;
             padding: 3px;
           `}
       `}

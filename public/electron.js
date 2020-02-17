@@ -23,13 +23,6 @@ function createWindow() {
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
 
-  BrowserWindow.addDevToolsExtension(
-    path.join(
-      os.homedir(),
-      "AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi\\4.4.0_0"
-    )
-  );
-
   console.log("Window ready.");
   mainWindow.on("closed", () => (mainWindow = null));
 }
