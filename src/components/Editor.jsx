@@ -118,6 +118,9 @@ const Editor = () => {
               decorate={decorate}
               renderLeaf={renderLeaf}
               placeholder="Start writing!"
+              spellCheck={true}
+              autoCorrect={true}
+              autoFocus={true}
             />
           </Slate>
         </div>

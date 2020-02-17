@@ -3,7 +3,6 @@ const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 const fs = require("fs");
-const os = require("os");
 
 let mainWindow;
 
@@ -12,7 +11,6 @@ function createWindow() {
     width: 900,
     height: 685,
     frame: false,
-    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true
     }
