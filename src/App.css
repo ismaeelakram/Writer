@@ -1,28 +1,50 @@
 .App {
+  text-align: left;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #222;
+}
+
+.app-container {
+  margin-top: 30px;
+}
+
+.textView {
+  font-size: 20px;
+  color: #fff;
+  font-family: "Fira Code", "Consolas", monospace;
+}
+
+.textView span::selection {
+  background-color: rgba(255, 255, 255, 1);
+  color: #000;
+  opacity: 100%;
+}
+
+.public-DraftEditor-content {
+  overflow: auto;
+  max-height: 600px;
+  padding-right: 10%;
+  padding-left: 10%;
+  padding-bottom: 30px;
+}
+
+.menu {
+  padding-top: 20px;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.menu-item {
+  color: #fff;
+  margin: 30px;
+  display: inline;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.menu-item span:hover {
+  transition: all 0.1s ease;
+  cursor: pointer;
+  border-bottom: 2px white solid;
 }
