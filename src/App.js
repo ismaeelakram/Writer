@@ -10,7 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       file: null,
-      title: "Code.js"
+      title: "Writer"
     };
 
     this.save = this.save.bind(this);
@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ title: "Untitled - Code.js" });
+    this.setState({ title: "Untitled - Writer" });
   }
 
   open(e) {
@@ -26,7 +26,7 @@ class App extends Component {
       let file = ipcRenderer.sendSync("open-file");
       this.setState({
         file: file,
-        title: `${file[1]} - Code.js`
+        title: `${file[1]} - Writer`
       });
     } catch {}
   }

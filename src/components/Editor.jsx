@@ -14,7 +14,7 @@ Prism.languages.markdown=Prism.languages.extend("markup",{}),Prism.languages.ins
 
 const Editor = () => {
   const [value, setValue] = useState(initialValue);
-  const [title, setTitle] = useState("Untitled - Code.js");
+  const [title, setTitle] = useState("Untitled - Writer");
   const [path, setPath] = useState("");
   const [taskBarDisappear, settaskBarDisappear] = useState(false);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -68,7 +68,7 @@ const Editor = () => {
         ]
       }
     ]);
-    setTitle(`${file[1]} - Code.js`);
+    setTitle(`${file[1]} - Writer`);
     setPath(file[0]);
   };
 

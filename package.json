@@ -1,5 +1,5 @@
 {
-  "name": "Code.js",
+  "name": "Writer",
   "description": "",
   "author": "Ismaeel Akram",
   "version": "1.2.0",
@@ -27,8 +27,8 @@
     "wait-on": "3.3.0"
   },
   "build": {
-    "appId": "com.ismaeelakram.codejs",
-    "productName": "Code.js",
+    "appId": "com.ismaeelakram.writer",
+    "productName": "Writer",
     "win": {
       "icon": "build/icon.ico"
     },
