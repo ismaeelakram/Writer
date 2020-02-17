@@ -5,9 +5,10 @@
 
 When you hover over the blank space on top with your mouse, you get options to save and open files.
 
-![Image of Writer](https://i.imgur.com/KzdMPlS.gifv)
+![Image of Writer](https://i.imgur.com/KzdMPlS.gif)
 
 ## Downloads
 To download version 1.2.0, [click here](https://github.com/ismaeelakram/Writer/releases).
+
 
 
