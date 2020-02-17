@@ -16,6 +16,7 @@ const Editor = () => {
   const [value, setValue] = useState(initialValue);
   const [title, setTitle] = useState("Untitled - Code.js");
   const [path, setPath] = useState("");
+  const [taskBarDisappear, settaskBarDisappear] = useState(false);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const decorate = useCallback(([node, path]) => {
@@ -79,13 +80,22 @@ const Editor = () => {
 
   return (
     <React.Fragment>
-      <Titlebar title={title} backgroundColor="#222" />
+      <Titlebar
+        title={title}
+        className={"dark " + (taskBarDisappear ? "disappear" : "")}
+        backgroundColor="#222"
+      />
       <div className="app-container">
-        <ul className="menu">
-          <li className="menu-item">
+        <ul
+          className={"menu " + (taskBarDisappear ? "disappear" : "")}
+          onMouseOver={() => {
+            settaskBarDisappear(false);
+          }}
+        >
+          <li className={"menu-item " + (taskBarDisappear ? "disappear" : "")}>
             <span onClick={() => openFile()}>Open</span>
           </li>
-          <li className="menu-item">
+          <li className={"menu-item " + (taskBarDisappear ? "disappear" : "")}>
             <span onClick={() => saveFile()}>Save</span>
           </li>
         </ul>
@@ -93,7 +103,10 @@ const Editor = () => {
           <Slate
             editor={editor}
             value={value}
-            onChange={value => setValue(value)}
+            onChange={value => {
+              settaskBarDisappear(true);
+              setValue(value);
+            }}
           >
             <Editable
               className="editor"

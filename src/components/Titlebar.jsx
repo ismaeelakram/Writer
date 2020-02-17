@@ -37,7 +37,7 @@ export default class Titlebar extends Component {
 
   render() {
     return (
-      <header id="titlebar" className="dark">
+      <header id="titlebar" className={this.props.className}>
         <div id="drag-region">
           <div id="window-title">
             <span>{this.props.title}</span>

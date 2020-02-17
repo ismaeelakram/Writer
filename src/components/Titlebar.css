@@ -34,6 +34,7 @@ body {
   position: fixed;
   height: 32px;
   width: calc(100% - 2px); /*Compensate for body 1px border*/
+  transition: all 0.3s ease;
 }
 
 .dark {

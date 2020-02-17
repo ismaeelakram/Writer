@@ -1,8 +1,8 @@
 {
   "name": "Code.js",
   "description": "",
-  "author": "",
-  "version": "0.2.7",
+  "author": "Ismaeel Akram",
+  "version": "1.2.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.4.1",
@@ -28,7 +28,7 @@
   },
   "build": {
     "appId": "com.ismaeelakram.codejs",
-    "productName": "App",
+    "productName": "Code.js",
     "win": {
       "icon": "build/icon.ico"
     },

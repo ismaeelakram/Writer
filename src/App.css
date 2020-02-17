@@ -35,16 +35,22 @@
 .menu {
   padding-top: 20px;
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .menu-item {
   color: #fff;
   margin: 30px;
   display: inline;
+  transition: all 0.3s ease;
 }
 
 .menu-item span:hover {
   transition: all 0.1s ease;
   cursor: pointer;
   border-bottom: 2px white solid;
+}
+
+.disappear {
+  opacity: 0;
 }
