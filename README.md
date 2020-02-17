@@ -1,5 +1,5 @@
 # Writer
-[![forthebadge](https://forthebadge.com/images/badges/made-with-meteor.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-grammas-recipe.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-grammas-recipe.svg)](https://forthebadge.com)
 
 **Writer** is a cross-platform, simple, functional writing app. Written in [Electron](https://www.electronjs.org) and [React](https://reactjs.org), it has many more features than other writing apps. For starters, it supports live markdown editing.
 
