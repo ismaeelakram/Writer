@@ -26,10 +26,16 @@
 
 .editor {
   overflow: auto;
-  max-height: 600px;
   padding-right: 10%;
   padding-left: 10%;
   padding-bottom: 30px;
+}
+
+.maxheight600 {
+  max-height: 600px;
+}
+.maxheight100pc {
+  max-height: 100%;
 }
 
 .menu {
