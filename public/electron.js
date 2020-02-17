@@ -64,9 +64,20 @@ ipcMain.on("open-file", (event, arg) => {
 });
 
 ipcMain.on("save-file", (event, arg) => {
-  try {
-    console.log("Save file event received.");
-    console.log(`File Path: ${arg[0]}\nContent: ${arg[1]}`);
-    fs.writeFileSync(arg[0], arg[1]);
-  } catch {}
+  console.log("Save file event received.");
+  // [
+  //   { children: [{ text: "f" }] },
+  //   { children: [{ text: "" }] },
+  //   { children: [{ text: "f" }] },
+  //   { children: [{ text: "" }] },
+  //   { children: [{ text: "f" }] }
+  // ];
+
+  let value = "";
+
+  arg[1].forEach(element => {
+    value = value + element.children[0].text + "\n";
+  });
+
+  fs.writeFileSync(arg[0], value);
 });
