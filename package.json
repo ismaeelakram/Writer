@@ -14,10 +14,12 @@
     "electromon": "^1.0.10",
     "electron-is-dev": "1.1.0",
     "electron-log": "^3.0.8",
+    "emotion": "^10.0.27",
     "prismjs": "^1.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "slate": "^0.57.1",
+    "slate-history": "^0.57.1",
     "slate-react": "^0.57.1"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 const fs = require("fs");
+const os = require("os");
 
 let mainWindow;
 
@@ -21,6 +22,14 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
+
+  BrowserWindow.addDevToolsExtension(
+    path.join(
+      os.homedir(),
+      "AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi\\4.4.0_0"
+    )
+  );
+
   console.log("Window ready.");
   mainWindow.on("closed", () => (mainWindow = null));
 }
