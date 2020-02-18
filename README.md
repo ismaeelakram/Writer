@@ -9,7 +9,8 @@ When you hover over the blank space on top with your mouse, you get options to s
 
 ![Image of Writer](https://i.imgur.com/KzdMPlS.gif)
 ## Downloads
-To download version 1.2.0, [click here](https://github.com/ismaeelakram/Writer/releases).
+To download the latest version, [click here](https://github.com/ismaeelakram/Writer/releases).
+
 
 
 

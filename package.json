@@ -2,7 +2,7 @@
   "name": "Writer",
   "description": "",
   "author": "Ismaeel Akram",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.4.1",

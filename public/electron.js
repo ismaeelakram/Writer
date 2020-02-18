@@ -54,21 +54,48 @@ ipcMain.on("open-file", (event, arg) => {
   } catch {}
 });
 
+ipcMain.on("save-new-file", (event, arg) => {
+  try {
+    console.log("Save new file event received.");
+    let saveDialog = dialog.showSaveDialogSync({
+      defaultPath: app.getPath("documents") + "/Untitled",
+      filters: [
+        { name: "Markdown", extensions: ["md"] },
+        { name: "Text File", extensions: ["txt"] },
+        { name: "All files", extensions: ["*"] }
+      ]
+    });
+
+    let value = "";
+
+    arg.forEach(element => {
+      value = value + element.children[0].text + "\n";
+    });
+
+    fs.writeFileSync(saveDialog, value);
+
+    let fileName = saveDialog.split("\\").pop();
+    event.returnValue = fileName.toString();
+  } catch (error) {}
+});
+
 ipcMain.on("save-file", (event, arg) => {
-  console.log("Save file event received.");
-  // [
-  //   { children: [{ text: "f" }] },
-  //   { children: [{ text: "" }] },
-  //   { children: [{ text: "f" }] },
-  //   { children: [{ text: "" }] },
-  //   { children: [{ text: "f" }] }
-  // ];
+  try {
+    console.log("Save file event received.");
+    // [
+    //   { children: [{ text: "f" }] },
+    //   { children: [{ text: "" }] },
+    //   { children: [{ text: "f" }] },
+    //   { children: [{ text: "" }] },
+    //   { children: [{ text: "f" }] }
+    // ];
 
-  let value = "";
+    let value = "";
 
-  arg[1].forEach(element => {
-    value = value + element.children[0].text + "\n";
-  });
+    arg[1].forEach(element => {
+      value = value + element.children[0].text + "\n";
+    });
 
-  fs.writeFileSync(arg[0], value);
+    fs.writeFileSync(arg[0], value);
+  } catch (error) {}
 });

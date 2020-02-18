@@ -74,7 +74,14 @@ const Editor = () => {
 
   const saveFile = e => {
     try {
-      ipcRenderer.send("save-file", [path, value]);
+      if (path === "") {
+        try {
+          let newFile = ipcRenderer.sendSync("save-new-file", value);
+          setTitle(newFile + " - Writer");
+        } catch {}
+      } else {
+        ipcRenderer.send("save-file", [path, value]);
+      }
     } catch {}
   };
 
