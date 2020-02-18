@@ -34,12 +34,7 @@ body {
   position: fixed;
   height: 32px;
   width: calc(100% - 2px); /*Compensate for body 1px border*/
-  transition: all 0.3s ease;
-}
-
-.dark {
-  background-color: #222;
-  color: #fff;
+  transition: all 0.3s linear;
 }
 .light {
   background-color: #fff;
@@ -89,7 +84,6 @@ body {
 }
 #window-controls #close-button {
   grid-column: 3;
-  transition: all 0.1s linear;
 }
 
 #window-controls {

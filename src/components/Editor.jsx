@@ -4,6 +4,8 @@ import { Slate, Editable, withReact } from "slate-react";
 import { Text, createEditor } from "slate";
 import { withHistory } from "slate-history";
 import { css } from "emotion";
+import sun from "./icons/sun.svg";
+import moon from "./icons/moon.svg";
 
 import Titlebar from "./Titlebar.jsx";
 
@@ -17,6 +19,8 @@ const Editor = () => {
   const [title, setTitle] = useState("Untitled - Writer");
   const [path, setPath] = useState("");
   const [taskBarDisappear, settaskBarDisappear] = useState(false);
+  const [darkModeSwitch, setDarkModeSwitch] = useState(true);
+
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const decorate = useCallback(([node, path]) => {
@@ -85,11 +89,22 @@ const Editor = () => {
     } catch {}
   };
 
+  const handleDarkModeToggle = e => {
+    if (darkModeSwitch === true) {
+      setDarkModeSwitch(false);
+    } else {
+      setDarkModeSwitch(true);
+    }
+  };
+
   return (
-    <React.Fragment>
+    <div className={"App " + (darkModeSwitch ? "dark" : "light")}>
       <Titlebar
         title={title}
-        className={"dark " + (taskBarDisappear ? "disappear" : "")}
+        className={
+          (darkModeSwitch ? "dark" : "light") +
+          (taskBarDisappear ? " disappear" : "")
+        }
         backgroundColor="#222"
       />
       <div className="app-container">
@@ -104,6 +119,18 @@ const Editor = () => {
           </li>
           <li className={"menu-item " + (taskBarDisappear ? "disappear" : "")}>
             <span onClick={() => saveFile()}>Save</span>
+          </li>
+          <li className={"menu-item " + (taskBarDisappear ? "disappear" : "")}>
+            <button
+              className="darkModeToggleBtn"
+              onClick={handleDarkModeToggle}
+            >
+              <img
+                src={darkModeSwitch ? moon : sun}
+                className="darkModeIcon"
+                alt={darkModeSwitch ? "Dark" : "Light"}
+              />
+            </button>
           </li>
         </ul>
         <div className="textView">
@@ -132,7 +159,7 @@ const Editor = () => {
           </Slate>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
