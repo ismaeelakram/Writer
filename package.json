@@ -14,10 +14,10 @@
     "prismjs": "^1.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-switch": "^5.0.1",
     "slate": "^0.57.1",
     "slate-history": "^0.57.1",
-    "slate-react": "^0.57.1"
+    "slate-react": "^0.57.1",
+    "textract": "^2.5.0"
   },
   "devDependencies": {
     "concurrently": "4.1.2",

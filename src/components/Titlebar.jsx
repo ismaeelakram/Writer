@@ -7,6 +7,10 @@ export default class Titlebar extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      maximized: false
+    };
+
     this.handleClose = this.handleClose.bind(this);
     this.handleMaximize = this.handleMaximize.bind(this);
     this.handleMinimize = this.handleMinimize.bind(this);
@@ -19,11 +23,12 @@ export default class Titlebar extends Component {
 
   handleMaximize() {
     const win = remote.getCurrentWindow();
-    win.maximize();
     if (win.isMaximized()) {
-      document.body.classList.add("maximized");
+      this.setState({ maximized: false });
+      win.restore();
     } else {
-      document.body.classList.remove("maximized");
+      this.setState({ maximized: true });
+      win.maximize();
     }
   }
 
@@ -47,7 +52,9 @@ export default class Titlebar extends Component {
               <span>&#xE921;</span>
             </div>
             <div class="button" id="max-button" onClick={this.handleMaximize}>
-              <span>&#xE922;</span>
+              <span>
+                {this.state.maximized ? <>&#xE923;</> : <>&#xE922;</>}
+              </span>
             </div>
             <div
               class="button"

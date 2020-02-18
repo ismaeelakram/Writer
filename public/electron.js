@@ -4,6 +4,7 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 const fs = require("fs");
 const { Document, Paragraph, Packer } = require("docx");
+const textract = require("textract");
 
 let mainWindow;
 
@@ -46,12 +47,16 @@ ipcMain.on("open-file", (event, arg) => {
     let openDialog = dialog.showOpenDialogSync({ properties: ["openFile"] });
     let filePath = openDialog[0];
     let fileName = filePath.split("\\").pop();
-    let fileContent = fs.readFileSync(filePath);
-    console.log(
-      `File Path: ${filePath}\nFile Name: ${fileName}\nFile Content: ${fileContent}`
-    );
+    let fileExtension = fileName.split(".").pop();
 
-    event.returnValue = [filePath, fileName, fileContent.toString()];
+    if (fileExtension === "docx" || fileExtension === "doc") {
+      textract.fromFileWithPath(filePath, (err, text) => {
+        event.returnValue = [filePath, fileName, text.toString()];
+      });
+    } else {
+      let fileContent = fs.readFileSync(filePath);
+      event.returnValue = [filePath, fileName, fileContent.toString()];
+    }
   } catch {}
 });
 

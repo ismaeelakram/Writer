@@ -105,7 +105,6 @@ const Editor = () => {
           (darkModeSwitch ? "dark" : "light") +
           (taskBarDisappear ? " disappear" : "")
         }
-        backgroundColor="#222"
       />
       <div className="app-container">
         <ul
@@ -145,9 +144,9 @@ const Editor = () => {
             <Editable
               className={
                 "editor " +
-                (remote.BrowserWindow.getFocusedWindow().isMaximized()
-                  ? "maxheight100pc"
-                  : "maxheight600")
+                (remote.getCurrentWindow().isMaximized()
+                  ? "maxheightFull"
+                  : "maxheightCustom")
               }
               decorate={decorate}
               renderLeaf={renderLeaf}
