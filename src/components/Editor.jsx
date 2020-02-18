@@ -188,14 +188,13 @@ const Leaf = ({ attributes, children, leaf }) => {
           css`
             display: block;
             text-align: center;
-            border-bottom: 2px solid #141414;
+            border-bottom: 2px solid gray;
           `}
         ${leaf.blockquote &&
           css`
             display: inline-block;
             border-left: 2px solid #141414;
             padding-left: 10px;
-            color: #aaa;
           `}
         ${leaf.code &&
           css`
