@@ -3,6 +3,7 @@ const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 const fs = require("fs");
+const { Document, Paragraph, Packer } = require("docx");
 
 let mainWindow;
 
@@ -62,6 +63,8 @@ ipcMain.on("save-new-file", (event, arg) => {
       filters: [
         { name: "Markdown", extensions: ["md"] },
         { name: "Text File", extensions: ["txt"] },
+        { name: "Microsoft Word", extensions: ["docx", "doc"] },
+        { name: "Rich Text", extensions: ["rtf"] },
         { name: "All files", extensions: ["*"] }
       ]
     });
@@ -72,9 +75,26 @@ ipcMain.on("save-new-file", (event, arg) => {
       value = value + element.children[0].text + "\n";
     });
 
-    fs.writeFileSync(saveDialog, value);
-
     let fileName = saveDialog.split("\\").pop();
+    let fileExtension = fileName.split(".").pop();
+
+    if (fileExtension === "docx" || fileExtension === "doc") {
+      let doc = new Document();
+      doc.addSection({
+        children: [
+          new Paragraph({
+            text: value
+          })
+        ]
+      });
+
+      Packer.toBuffer(doc).then(buffer => {
+        fs.writeFileSync(saveDialog, buffer);
+      });
+    } else {
+      fs.writeFileSync(saveDialog, value);
+    }
+
     event.returnValue = fileName.toString();
   } catch (error) {}
 });

@@ -7,6 +7,7 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "cross-env": "6.0.2",
+    "docx": "^5.0.2",
     "electron-is-dev": "1.1.0",
     "electron-log": "^3.0.8",
     "emotion": "^10.0.27",
