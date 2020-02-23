@@ -1,3 +1,8 @@
+@font-face {
+  font-family: FiraCode;
+  src: url(fonts/FiraCode-Regular.ttf);
+}
+
 .App {
   text-align: left;
   position: absolute;
@@ -19,12 +24,20 @@
 
 .light {
   background-color: #fff;
-  color: #222;
+  color: #222 !important;
+}
+
+.white {
+  filter: brightness(0) invert(1);
+}
+
+.black {
+  color: #000;
 }
 
 .textView {
   font-size: 20px;
-  font-family: "Fira Code", "Consolas", monospace;
+  font-family: FiraCode, "Consolas", monospace;
 }
 
 .textView span::selection {
@@ -66,7 +79,7 @@
 }
 
 .disappear {
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 .darkModeToggleBtn {
@@ -78,6 +91,17 @@
 }
 
 .darkModeIcon {
-  width: 30px;
-  height: 30px;
+  width: 27px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  transition: all 0.1s linear;
+}
+.footer p {
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 15px;
+  cursor: default;
+  margin-left: 10px;
 }

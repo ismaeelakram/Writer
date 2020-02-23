@@ -1,5 +1,5 @@
 import Prism from "prismjs";
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Slate, Editable, withReact } from "slate-react";
 import { Text, createEditor } from "slate";
 import { withHistory } from "slate-history";
@@ -20,6 +20,20 @@ const Editor = () => {
   const [path, setPath] = useState("");
   const [taskBarDisappear, settaskBarDisappear] = useState(false);
   const [darkModeSwitch, setDarkModeSwitch] = useState(true);
+
+  const [wordCount, setWordCount] = useState(0);
+
+  useEffect(() => {
+    const wordCountInterval = setInterval(() => {
+      let temp = "";
+
+      value.forEach(element => {
+        temp = temp + element.children[0].text + "\n";
+      });
+      setWordCount(temp.split(" ").length);
+    }, 50);
+    return () => clearInterval(wordCountInterval);
+  });
 
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
@@ -74,6 +88,13 @@ const Editor = () => {
     ]);
     setTitle(`${file[1]} - Writer`);
     setPath(file[0]);
+
+    let temp = "";
+
+    value.forEach(element => {
+      temp = temp + element.children[0].text + "\n";
+    });
+    setWordCount(temp.split(" ").length);
   };
 
   const saveFile = e => {
@@ -126,7 +147,9 @@ const Editor = () => {
             >
               <img
                 src={darkModeSwitch ? moon : sun}
-                className="darkModeIcon"
+                className={
+                  "darkModeIcon " + (darkModeSwitch ? "white" : "black")
+                }
                 alt={darkModeSwitch ? "Dark" : "Light"}
               />
             </button>
@@ -156,6 +179,15 @@ const Editor = () => {
               autoFocus={true}
             />
           </Slate>
+        </div>
+        <div
+          className={
+            "footer " +
+            (darkModeSwitch ? "dark" : "light") +
+            (taskBarDisappear ? " disappear" : "")
+          }
+        >
+          <p>{wordCount} words</p>
         </div>
       </div>
     </div>
