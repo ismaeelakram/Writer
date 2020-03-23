@@ -40,9 +40,9 @@
   font-family: FiraCode, "Consolas", monospace;
 }
 
-.textView span::selection {
-  opacity: 100%;
-}
+/* .textView *::selection {
+  background-color: #242424;
+} */
 
 .editor {
   overflow: auto;
@@ -97,7 +97,7 @@
 .footer {
   position: absolute;
   bottom: 0;
-  transition: all 0.1s linear;
+  transition: all 0.3s linear;
 }
 .footer p {
   padding: 5px;

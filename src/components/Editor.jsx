@@ -186,6 +186,9 @@ const Editor = () => {
             (darkModeSwitch ? "dark" : "light") +
             (taskBarDisappear ? " disappear" : "")
           }
+          onMouseOver={() => {
+            settaskBarDisappear(false);
+          }}
         >
           <p>{wordCount} words</p>
         </div>
