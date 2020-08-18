@@ -14,8 +14,8 @@ function createWindow() {
     height: 685,
     frame: false,
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: true,
+    },
   });
   mainWindow.loadURL(
     isDev
@@ -44,7 +44,8 @@ app.on("activate", () => {
 ipcMain.on("open-file", (event, arg) => {
   try {
     console.log("Open file event received.");
-    let openDialog = dialog.showOpenDialogSync({ properties: ["openFile"] });
+    let openDialog =
+      dialog.showOpenDialogSync({ properties: ["openFile"] }) || false;
     let filePath = openDialog[0];
     let fileName = filePath.split("\\").pop();
     let fileExtension = fileName.split(".").pop();
@@ -70,13 +71,13 @@ ipcMain.on("save-new-file", (event, arg) => {
         { name: "Text File", extensions: ["txt"] },
         { name: "Microsoft Word", extensions: ["docx", "doc"] },
         { name: "Rich Text", extensions: ["rtf"] },
-        { name: "All files", extensions: ["*"] }
-      ]
+        { name: "All files", extensions: ["*"] },
+      ],
     });
 
     let value = "";
 
-    arg.forEach(element => {
+    arg.forEach((element) => {
       value = value + element.children[0].text + "\n";
     });
 
@@ -88,12 +89,12 @@ ipcMain.on("save-new-file", (event, arg) => {
       doc.addSection({
         children: [
           new Paragraph({
-            text: value
-          })
-        ]
+            text: value,
+          }),
+        ],
       });
 
-      Packer.toBuffer(doc).then(buffer => {
+      Packer.toBuffer(doc).then((buffer) => {
         fs.writeFileSync(saveDialog, buffer);
       });
     } else {
@@ -117,7 +118,7 @@ ipcMain.on("save-file", (event, arg) => {
 
     let value = "";
 
-    arg[1].forEach(element => {
+    arg[1].forEach((element) => {
       value = value + element.children[0].text + "\n";
     });
 

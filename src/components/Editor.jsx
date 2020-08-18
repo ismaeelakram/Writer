@@ -27,7 +27,7 @@ const Editor = () => {
     const wordCountInterval = setInterval(() => {
       let temp = "";
 
-      value.forEach(element => {
+      value.forEach((element) => {
         temp = temp + element.children[0].text + "\n";
       });
       setWordCount(temp.split(" ").length);
@@ -35,7 +35,7 @@ const Editor = () => {
     return () => clearInterval(wordCountInterval);
   });
 
-  const renderLeaf = useCallback(props => <Leaf {...props} />, []);
+  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const decorate = useCallback(([node, path]) => {
     const ranges = [];
@@ -44,7 +44,7 @@ const Editor = () => {
       return ranges;
     }
 
-    const getLength = token => {
+    const getLength = (token) => {
       if (typeof token === "string") {
         return token.length;
       } else if (typeof token.content === "string") {
@@ -65,7 +65,7 @@ const Editor = () => {
         ranges.push({
           [token.type]: true,
           anchor: { path, offset: start },
-          focus: { path, offset: end }
+          focus: { path, offset: end },
         });
       }
 
@@ -75,42 +75,40 @@ const Editor = () => {
     return ranges;
   }, []);
 
-  const openFile = e => {
+  const openFile = (e) => {
     let file = ipcRenderer.sendSync("open-file");
+    if (file == null) return;
     setValue([
       {
         children: [
           {
-            text: file[2]
-          }
-        ]
-      }
+            text: file[2],
+          },
+        ],
+      },
     ]);
     setTitle(`${file[1]} - Writer`);
     setPath(file[0]);
 
     let temp = "";
 
-    value.forEach(element => {
+    value.forEach((element) => {
       temp = temp + element.children[0].text + "\n";
     });
     setWordCount(temp.split(" ").length);
   };
 
-  const saveFile = e => {
-    try {
-      if (path === "") {
-        try {
-          let newFile = ipcRenderer.sendSync("save-new-file", value);
-          setTitle(newFile + " - Writer");
-        } catch {}
-      } else {
-        ipcRenderer.send("save-file", [path, value]);
-      }
-    } catch {}
+  const saveFile = (e) => {
+    if (path === "" || path === null) {
+      let [fileName, filePath] = ipcRenderer.sendSync("save-new-file", value);
+      setTitle(fileName + " - Writer");
+      setPath();
+    } else {
+      ipcRenderer.send("save-file", [path, value]);
+    }
   };
 
-  const handleDarkModeToggle = e => {
+  const handleDarkModeToggle = (e) => {
     if (darkModeSwitch === true) {
       setDarkModeSwitch(false);
     } else {
@@ -159,7 +157,7 @@ const Editor = () => {
           <Slate
             editor={editor}
             value={value}
-            onChange={value => {
+            onChange={(value) => {
               settaskBarDisappear(true);
               setValue(value);
             }}
@@ -173,7 +171,7 @@ const Editor = () => {
               }
               decorate={decorate}
               renderLeaf={renderLeaf}
-              placeholder="Start writing!"
+              placeholder=""
               spellCheck={true}
               autoCorrect={true}
               autoFocus={true}
@@ -190,7 +188,7 @@ const Editor = () => {
             settaskBarDisappear(false);
           }}
         >
-          <p>{wordCount} words</p>
+          <p className="word-count">{wordCount} words</p>
         </div>
       </div>
     </div>
@@ -247,10 +245,10 @@ const initialValue = [
   {
     children: [
       {
-        text: ""
-      }
-    ]
-  }
+        text: "",
+      },
+    ],
+  },
 ];
 
 export default Editor;
