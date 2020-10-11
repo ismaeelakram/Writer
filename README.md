@@ -12,4 +12,4 @@ When you hover over the blank space on top with your mouse, you get options to s
 
 ## Downloads
 
-To download the latest version, [click here](https://github.com/ismaeelakram/Writer/rellinears).
+To download the latest version, [click here](https://github.com/ismaeelakram/Writer/releases).
